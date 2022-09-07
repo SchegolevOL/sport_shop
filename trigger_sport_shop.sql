@@ -64,7 +64,7 @@ create trigger trg_sales_insert
                 ))
 
           );
-
+-- ------------------------------------------------------------------------------------------------------
 delimiter ||
 create trigger trg_archive_product
   before update on tab_products
@@ -78,7 +78,7 @@ create trigger trg_archive_product
         end;
     end if;
 end||
-
+-- ------------------------------------------------------------------------------------------------------
 delimiter ||
 create trigger trg_client_reg_ban
   before insert on tab_clients
@@ -87,20 +87,20 @@ create trigger trg_client_reg_ban
     select @is_email:=count(new.email) from tab_clients where new.email=email;
     if @is_email=0 then
         begin
-            insert into tab_clients(id_client_name, id_gender, id_subscribe, telephone, email, discount)
+            /*insert into tab_clients(id_client_name, id_gender, id_subscribe, telephone, email, discount)
                 value ((select  new.id_client_name),
                        (select  new.id_gender),
                        (select  new.id_subscribe),
                        (select  new.telephone),
                        (select  new.email),
-                       (select  new.discount));
+                       (select  new.discount));*/
         end;
     end if;
 end||
 
 
 
-
+-- ------------------------------------------------------------------------------------------------------
 show triggers;
 drop trigger trg_sales_insert;
 drop trigger trg_archive_product;

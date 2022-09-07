@@ -24,4 +24,4 @@ VALUES (1, 1, 3, 3, 6000, 4000, DEFAULT);
 
 INSERT INTO sport_shop.tab_products (id_product_name, id_type_of_product, id_manufacturer, product_quantity, price,
                                      cost_price, is_delete)
-VALUES (1, 1, 3, 0, 6000, 4000, DEFAULT);
+VALUES (1, 1, 2, 0, 6000, 4000, DEFAULT);
