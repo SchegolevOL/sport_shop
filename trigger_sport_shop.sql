@@ -127,12 +127,26 @@ create trigger trg_sales_product_quantity
     for each row
 begin
     update tab_products
-        set product_quantity=product_quantity-new.quantity
-        where new.id_product = tab_products.id_product;
+    set product_quantity=product_quantity - new.quantity
+    where new.id_product = tab_products.id_product;
 end||
+-- ------------------------------------------------------------------------------------------------------
+delimiter ||
+create trigger trg_archive_dismissed_worker
+    before update
+    on tab_workers
+    for each row
+begin
+if new.is_delete= true then
+    insert into tab_archive_dismissed_worker(id_worker)
+        value (new.id_worker);
+end if;
+end ||
+
 -- ------------------------------------------------------------------------------------------------------
 show triggers;
 drop trigger trg_sales_insert;
 drop trigger trg_archive_product;
 drop trigger trg_sales_product_quantity;
 drop trigger trg_sales_insert_last_unit;
+drop trigger trg_archive_dismissed_worker;

@@ -148,4 +148,10 @@ create table tab_last_unit_products(
     id_last_unit_products int not null primary key auto_increment,
     id_product int,
     is_delete bool default false
-)
+);
+
+create table tab_archive_dismissed_worker(
+    id_archive_dismissed_worker int not null primary key auto_increment,
+    id_worker int not null ,
+    is_delete bool default false
+);
