@@ -142,7 +142,19 @@ if new.is_delete= true then
         value (new.id_worker);
 end if;
 end ||
-
+-- ------------------------------------------------------------------------------------------------------
+delimiter ||
+create trigger trg_del_client
+    before update
+    on tab_clients
+    for each row
+    begin
+        if new.is_delete = 1 then
+            begin
+                 call client_not_del(new.id_client);
+            end;
+        end if;
+    end ||
 -- ------------------------------------------------------------------------------------------------------
 show triggers;
 drop trigger trg_sales_insert;
@@ -150,3 +162,4 @@ drop trigger trg_archive_product;
 drop trigger trg_sales_product_quantity;
 drop trigger trg_sales_insert_last_unit;
 drop trigger trg_archive_dismissed_worker;
+drop trigger trg_del_client;
